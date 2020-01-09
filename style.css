@@ -14,8 +14,10 @@ background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
 .jumbotron {
   background-color: rgba(5,0,46,0.9);
   border:4px solid rgb(91,192,222);
+
   max-width: 600px;
   margin: 0 auto;
+  border-radius: 10px;
 }
 
 h1{
