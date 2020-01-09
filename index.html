@@ -49,13 +49,13 @@
   function passwordGenerate() {
   alert("We are going to generate a random password for you");
   var j = 0;
-  for(var i=0; j<1; i++) {
+  while(j < 10){
   var length = prompt("What should the password's length be (8-128 characters)?");
-  if(length < 8 || length > 128) {
-    alert("The password must be between 18 and 128 characters");
+  if(length > 7 && length  < 129) {
+   j = 10; 
   }
   else {
-    j = 1;
+    alert("The password must be between 18 and 128 characters");
   }
   }
 
