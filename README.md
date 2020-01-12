@@ -3,7 +3,7 @@
 ## Description
 * I have developed a user-friendly Javascript-based application that generates a random password based on user inputs
 * Checkboxes are implemented to designate what kind of characters to use (Special Characters, Numbers, Uppercase Letters, and Lowercase Letters).
-* The user designates the length of the password (8-128 characters) using a slider  
+* The user chooses the length of their password (8-128 characters) using a slider  
 * The program generates a random password of the selected length using `Math.random()` and the user-selected character set. 
 * You can copy this password to your clipboard by clicking the button that says **_"Copy To Clipboard"_**. 
 
