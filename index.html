@@ -11,27 +11,73 @@
   <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
 
-  <div class = "container mt-5">
-    <div class = "jumbotron pt-3">
-  <h1 class = "text-center text-info">PASSWORD GENERATOR</h1>
-  
-    <h4 class="text-left">Generate a Password</h4>
-    
-    <div class="form-group">
-      
-      <textarea class="form-control text-center" id="mytext" rows="6" placeholder = "Your Secure Password"></textarea>
-    </div>
-    <hr class="my-4">
-    <button type="submit" id ="button1" class="btn btn-info" onclick = "passwordGenerate()">Generate Password
-  </button>
-  <button type="submit" class="btn btn-info disabled float-right clearfix" onclick = "copyClip()" aria-disabled="true" id = "button2">Copy To Clipboard
-  </button>
-  </div>
+  <div id="alert1" class="alert alert-danger inactive alert-dismissible fade show" role="alert">
+    <h4 class="alert-heading">Couldn't Create Password:</h4>
+    <p>You must choose at least one of the character types in order to generate a password</p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
   </div>
 
- 
+
+  <div class="container mt-3 mb-3">
+    <div class="jumbotron pt-3">
+      <h1 class="text-center text-info">PASSWORD GENERATOR</h1>
+    
+
+      <div class="form-group">
+        <p class="text-center"><u>Choose which characters to use:</u></p>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="checkSpecial">
+          <label class="form-check-label" for="checkSpecial">
+            Special Characters: (;!\"#$%&'()*+,-./:;&lt;=>?@[\]^_`{|}~)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="checkNumeric">
+          <label class="form-check-label" for="checkNumeric">
+            Numeric Characters: (0123456789)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="checkLowercase">
+          <label class="form-check-label" for="checkLowercase">
+            Lowercase Characters: (abcdefghijklmnopqrstuvwxyz)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="checkUppercase">
+          <label class="form-check-label" for="checkUppercase">
+            Uppercase Characters: (ABCDEFGHIJKLMNOPQRSTUVWXYZ)
+          </label>
+        </div>
+      </div>
+
+      <hr>
+      <div class="range">
+        <p><u>Choose your password's length: </u></p>
+        <p>Characters: <span id="charCount"></span></p><input type="range" class="custom-range" min="8" max="128"
+          id="passwordRange">
+      </div>
+      <br>
+      <h4 class="text-left">Generate a Password</h4>
+      <textarea class="form-control mb-3" id="mytext" rows="5" placeholder="Your Secure Password"></textarea>
+
+
+      <div class="buttonContainer">
+        <button type="submit" id="button1" class="btn btn-info" onclick="passwordGenerate()">Generate Password
+        </button>
+        <button type="submit" class="btn btn-info disabled float-right clearfix" onclick="copyClip()"
+          aria-disabled="true" id="button2">Copy To Clipboard
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+
 
 
 
@@ -41,100 +87,86 @@
   <!-- Bootstrap's javascript file that allows the dropdown menu to work  -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
   </script>
-  
+
   <script>
-  //Javascript Code
-  pgDone = false;
+    //Javascript Code
+    pgDone = false;
+    var charCount = document.getElementById("charCount");
+    var passwordRange = document.getElementById("passwordRange");
+    charCount.innerHTML = passwordRange.value;
 
-  function passwordGenerate() {
-  alert("We are going to generate a random password for you");
-  var j = 0;
-  while(j < 10){
-  var length = prompt("What should the password's length be (8-128 characters)?");
-  if(length > 7 && length  < 129) {
-   j = 10; 
-  }
-  else {
-    alert("The password must be between 18 and 128 characters");
-  }
-  }
-
- var k = 0;
-  while ( k < 10) {
-  var special = confirm("Do you want to use Special Characters?");
-  var numeric = confirm("Do you want to use Numeric Characters?");
-  var lowercase = confirm("Do you want to use Lowercase Characters?");
-  var uppercase = confirm("Do you want to use Uppercase Characters?");
-
-    if(special || numeric || lowercase || uppercase){
-      k = 10;
+    passwordRange.oninput = function () {
+      charCount.innerHTML = this.value;
     }
-    else {
-      alert("You have to use at least one of the character types in your password!");
+
+
+
+    function passwordGenerate() {
+      var special = document.getElementById("checkSpecial").checked;
+      var numeric = document.getElementById("checkNumeric").checked;
+      var lowercase = document.getElementById("checkLowercase").checked;
+      var uppercase = document.getElementById("checkUppercase").checked;
+
+
+      if (!special && !numeric && !lowercase && !uppercase) {
+        var alert1 = document.getElementById("alert1");
+        alert1.classList.remove("inactive");
+      }
+      else {
+
+        var specialChar = ";!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+        var numericChar = "0123456789";
+        var lowercaseChar = "abcdefghijklmnopqrstuvwxyz";
+        var uppercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var result = "";
+        var characters = "";
+
+        if (special) {
+          characters += specialChar;
+        }
+        if (numeric) {
+          characters += numericChar;
+        }
+        if (lowercase) {
+          characters += lowercaseChar;
+        }
+        if (uppercase) {
+          characters += uppercaseChar;
+        }
+        console.log(characters);
+        console.log(passwordRange.value);
+
+
+
+        for (var x = 0; x < passwordRange.value; x++) {
+          result += characters[Math.floor(Math.random() * characters.length)];
+        }
+        console.log(result);
+
+        document.getElementById("mytext").value = result;
+        pgDone = true;
+        var element = document.getElementById("button2");
+        element.classList.remove("disabled");
+      }
+
     }
-  }
 
+    function copyClip() {
+      if (!pgDone) {
+        console.log("nope");
+      }
+      else {
+        var copyText = document.getElementById("mytext");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        alert("Copied Your Password: " + copyText.value);
 
-  var specialChar = ";!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
-  var numericChar = "0123456789";
-  var lowercaseChar = "abcdefghijklmnopqrstuvwxyz";
-  var uppercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var result = "";
-  var characters = "";
-
-  if (special) {
-    characters += specialChar;
-  }
-  if (numeric) {
-    characters += numericChar;
-  }
-  if (lowercase) {
-    characters += lowercaseChar;
-  }
-  if (uppercase) {
-    characters += uppercaseChar;
-  }
-  console.log(characters);
+      }
+    }
 
 
 
-  
-  for (var x = 0; x < length; x ++) {
-    result += characters[Math.floor(Math.random() * characters.length)];
-  }
-console.log(result);
-  
-  document.getElementById("mytext").value = result;
-  pgDone = true;
-  var element = document.getElementById("button2");
-  element.classList.remove("disabled");
-  }
-
-
-
-  function copyClip() {
-    if(!pgDone) {
- console.log("nope");
-}
-else {
-    /* Get the text field */
-  var copyText = document.getElementById("mytext");
-
-/* Select the text field */
-copyText.select();
-copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-
-/* Copy the text inside the text field */
-document.execCommand("copy");
-
-/* Alert the copied text */
-alert("Copied the text: " + copyText.value);
-
-  }
-  }
-  
-  
-  
   </script>
 
 </body>

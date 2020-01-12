@@ -1,6 +1,6 @@
 body {
-  color:whitesmoke;
-  background-color:#556;
+color:whitesmoke;
+background-color:#556;
 background-image: linear-gradient(30deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
 linear-gradient(150deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
 linear-gradient(30deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
@@ -18,28 +18,64 @@ background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
   max-width: 600px;
   margin: 0 auto;
   border-radius: 10px;
+  padding-bottom:20px !important;
+  margin-bottom: 0 !important;
 }
 
 h1{
-  border-bottom: 2px solid rgb(91,192,222);
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  margin-top: 20px;
   text-shadow: 2px 1px lightgrey;
-  box-shadow: 2px 1px lightgrey;
 }
 
-.form-control {
+p{
+  margin:0;
+}
+
+.inactive {
+  display: none;
+}
+#alert1 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form-group {
+  padding:10px;
+  border:2px dotted rgb(91,192,222);
+  border-radius:10px;
+}
+
+.form-control  {
   background-color: rgba(0, 0, 0, .6) !important;
 }
 
 #mytext {
   color:white;
 }
+hr{
+  border-bottom: 1px solid white;
+}
+.range {
+ padding: 10px;
+ padding-left:25px;
+ border:2px dotted rgb(91,192,222);
+ border-radius:10px;
+ text-align: center;
+}
 
-@media only screen and (max-width: 400px) {
-#button2 {
+button {
+  border-radius: 1rem !important ;
+}
+
+@media only screen and (max-width: 420px) {
+
+  #button2 {
   float:none !important;
 }
-.jumbotron{
+.buttonContainer{
   text-align: center;
 }
 
@@ -49,4 +85,11 @@ margin-bottom:10px;
 #button2 {
   margin-bottom:10px;
   }
+.jumbotron {
+  padding-bottom: 10px !important;
+}
+
+label, p {
+  font-size: 13px;
+}
 }
