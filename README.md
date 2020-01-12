@@ -1,16 +1,29 @@
 # Password Generator
 
 ## Description
-I have developed a **Password Generator** that asks the user to designate the length of the password (8-128 characters) and then gives them options for what kind of characters to use (Special Characters, Numbers, Uppercase Letters, and Lowercase Letters).  The program then generates a random password of the selected length using `Math.random()` and the user-selected character set.  You can then copy this password to your clipboard by clicking the button that says **_"Copy To Clipboard"_**. 
+* I have developed a Javascript-based application that generates a random password based on user inputs
+* Checkboxes are implemented to designate what kind of characters to use (Special Characters, Numbers, Uppercase Letters, and Lowercase Letters).
+* The user must then designate the length of the password (8-128 characters) using a slider  
+* The program then generates a random password of the selected length using `Math.random()` and the user-selected character set. 
+* You can then copy this password to your clipboard by clicking the button that says **_"Copy To Clipboard"_**. 
 
 ### Javascript used
-* **Alert, Prompt, and Confirm**
+
 * **Functions**
 * **If/Else Loop**
-* **While Loop**
 * **For Loop**
 * **getElementById**
 * **classList.remove**
+* **onclick Event**
+* **oninput Event**
+
+### Screenshots
+* Laptop Screen
+<img alt="large view" src="ss.jpg" />
+* Ipad Screen
+<img alt="medium view" src="ss3.jpg" width="400px" /> 
+* Iphone Screen
+<img alt="medium view" src="ss2.jpg" width="400px" />
 
 ### URL
 If you want to check out my Password Generator, **[Click Here](https://alexcoulter.github.io/password-generator/)**
