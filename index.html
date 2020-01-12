@@ -4,7 +4,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <meta charset="UTF-8">
-  <title>Responsive Contact Page</title>
+  <title>Password Generator</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -17,7 +17,7 @@
   <div id="alert1" class="alert alert-danger inactive alert-dismissible fade show" role="alert">
     <h4 class="alert-heading">Couldn't Create Password:</h4>
     <p>You must choose at least one of the character types in order to generate a password</p>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <button type="button" class="close" data-hide="alert" aria-label="Close" onclick="alertHide()">
       <span aria-hidden="true">&times;</span>
   </div>
 
@@ -99,6 +99,10 @@
       charCount.innerHTML = this.value;
     }
 
+    function alertHide() {
+      var alert2 = document.getElementById("alert1");
+        alert2.classList.add("inactive");
+    }
 
 
     function passwordGenerate() {
